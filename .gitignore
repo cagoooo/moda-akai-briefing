@@ -3,3 +3,4 @@ node_modules/
 *.log
 media/raw/
 __pycache__/
+backup/

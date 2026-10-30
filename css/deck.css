@@ -278,7 +278,9 @@ html.print-pdf .reveal .slides section .fragment { opacity: 1 !important; visibi
 .vid-slide.op-blocked .op-play { display: inline-flex; }
 .vid-slide .op-skip { position: absolute; right: 22px; bottom: 16px; font: 16px 'Noto Sans TC', sans-serif; color: rgba(255, 255, 255, .6); }
 .vid-slide.op-ending .op-video { opacity: 0; transition: opacity .6s; }
-html.is-opening .akai-footer, html.is-opening #theme-btn { opacity: 0; pointer-events: none; }
+html.is-opening .akai-footer, html.is-opening #theme-btn,
+html.is-opening .reveal .controls, html.is-opening .reveal .slide-number, html.is-opening .reveal .progress { opacity: 0; pointer-events: none; }
+.vid-slide .s, .vid-slide { padding: 0 !important; }
 
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; }
