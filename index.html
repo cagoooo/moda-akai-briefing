@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="zh-TW" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>科技教育創新專區・阿凱老師｜公共程式平臺上架內容報告</title>
+  <meta name="description" content="桃園市龍潭區石門國民小學資訊組長黃凱揚，向數位發展部報告「科技教育創新專區・阿凱老師」的開發緣起、校園使用情形、公共程式上架與資安檢測歷程。" />
+  <meta name="author" content="阿凱老師（桃園市龍潭區石門國民小學）" />
+  <meta name="theme-color" content="#0a1d33" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+  <link rel="canonical" href="https://cagoooo.github.io/moda-akai-briefing/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="zh_TW" />
+  <meta property="og:url" content="https://cagoooo.github.io/moda-akai-briefing/" />
+  <meta property="og:title" content="科技教育創新專區・阿凱老師｜公共程式平臺上架內容報告" />
+  <meta property="og:description" content="一位國小資訊組長，用 AI 協作開發 133 款教學工具，並通過公共程式平臺資安檢測的歷程。" />
+  <meta property="og:image" content="https://cagoooo.github.io/moda-akai-briefing/og-image.jpg?v=__BUILD_VERSION__" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <script>
+    try { if (localStorage.getItem('moda2026akai_theme') === 'light') document.documentElement.dataset.theme = 'light'; } catch (e) {}
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reset.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css" />
+  <link rel="stylesheet" href="css/deck.css?v=__BUILD_VERSION__" />
+</head>
+<body>
+<button id="theme-btn" type="button" aria-label="切換深淺底色">☀️ 白底</button>
+
+<div class="reveal">
+<div class="slides">
+
+<!-- 1 封面 -->
+<section>
+  <div class="s center cover">
+    <div class="stamp" data-a="fade">PUBLIC CODE ・ MIT LICENSE</div>
+    <h1>科技教育創新專區<br><span class="cyan">阿凱老師</span></h1>
+    <p class="sub" data-a>公共程式平臺上架內容報告</p>
+    <p class="meta" data-a>報告人　<b>黃凱揚 資訊組長</b>（阿凱老師）<br>桃園市龍潭區石門國民小學<br><span class="mono muted">2026.11.06（五）・數位發展部</span></p>
+    <div class="panel pass cover-art" data-a="right">
+      <span class="tag">SCAN REPORT ・ 2026.10.28</span>
+      <table class="scan">
+        <tr><td>Fortify 中風險以上</td><td class="n ok">0</td></tr>
+        <tr><td>Mend 中風險以上</td><td class="n ok">0</td></tr>
+        <tr><td>開源授權</td><td class="n ok">MIT</td></tr>
+        <tr class="final"><td>平臺上架標準</td><td class="n ok">✓ 通過</td></tr>
+      </table>
+    </div>
+  </div>
+  <aside class="notes">（0:00–0:40）長官好，我是石門國小資訊組長黃凱揚。今天用 20 分鐘，報告我們送上公共程式平臺的「科技教育創新專區」：為什麼做、怎麼做、學校怎麼用，以及這次上架和資安檢測的過程。右邊是 10/28 最新複掃結果，已經符合平臺標準。</aside>
+</section>
+
+<!-- 2 議程 -->
+<section>
+  <div class="s">
+    <div class="kicker">// AGENDA</div>
+    <h2>今天的 20 分鐘</h2>
+    <div class="agenda grow stg">
+      <div class="it"><span class="n">01</span><span class="t">為什麼要做<span>一個人的資訊組，面對全校老師的需求</span></span><span class="m">2 min</span></div>
+      <div class="it"><span class="n">02</span><span class="t">怎麼做到<span>老師提需求，AI 協作寫程式，自動上線</span></span><span class="m">3 min</span></div>
+      <div class="it"><span class="n">03</span><span class="t">現場示範<span>入口網、工具索引神器、主推工具</span></span><span class="m">4 min</span></div>
+      <div class="it"><span class="n">04</span><span class="t">校園使用情形<span>真實數據與帶課情境</span></span><span class="m">3 min</span></div>
+      <div class="it"><span class="n">05</span><span class="t">上架之路與資安檢測<span>Fortify 五次掃描、Mend 元件掃描</span></span><span class="m">5 min</span></div>
+      <div class="it"><span class="n">06</span><span class="t">開源與建議<span>其他學校可以怎麼用、給平臺的回饋</span></span><span class="m">3 min</span></div>
+    </div>
+  </div>
+  <aside class="notes">（0:40–1:00）快速帶過議程。</aside>
+</section>
+
+<!-- 3 為什麼要做 -->
+<section>
+  <div class="s">
+    <div class="kicker">// 01 <b>WHY</b></div>
+    <h2>一個人的資訊組，全校的需求</h2>
+    <div class="g2 grow">
+      <div class="panel amber" data-a="left">
+        <span class="tag">老師的日常需求</span>
+        <ul>
+          <li>班級經營：加扣分、抽籤分組、聯絡簿</li>
+          <li>備課與上課：互動教材、即時投票</li>
+          <li>行政：禮堂、專科教室、平板車預約</li>
+          <li>需求很細，而且每天都在變</li>
+        </ul>
+      </div>
+      <div class="panel" data-a="right">
+        <span class="tag">市售工具的門檻</span>
+        <ul>
+          <li>要註冊帳號，學生還要另外登入</li>
+          <li>免費版有廣告或功能限制</li>
+          <li>學生資料上傳到來源不明的伺服器</li>
+          <li>流程不合學校實際作法，還是得手動補</li>
+        </ul>
+      </div>
+    </div>
+    <p class="small" data-a style="margin-top:18px">→ 目標：<span class="em">免安裝、免註冊、照學校需求量身打造</span>，老師打開就能用。</p>
+  </div>
+  <aside class="notes">（1:00–3:00）我是資訊組長，也是科任老師。小校資訊組只有一個人，但全校老師的需求很多、很細。市售工具常卡在註冊、付費、廣告和個資。所以我的目標很簡單：做出老師打開就能用的工具。</aside>
+</section>
+
+<!-- 4 怎麼做到 -->
+<section>
+  <div class="s">
+    <div class="kicker">// 02 <b>HOW</b></div>
+    <h2>老師提需求，AI 協作寫程式</h2>
+    <div class="flow panel" data-a>
+      <div class="step"><div class="ic">🗣️</div><h3>提出需求</h3><p>用口語描述<br>老師遇到的問題</p></div>
+      <div class="arrow"></div>
+      <div class="step"><div class="ic">🤖</div><h3>AI 協作開發</h3><p>AI Agent 寫程式<br>我負責審核與決策</p></div>
+      <div class="arrow"></div>
+      <div class="step"><div class="ic">🧪</div><h3>自動測試</h3><p>每次修改都<br>跑過檢查</p></div>
+      <div class="arrow"></div>
+      <div class="step"><div class="ic">🚀</div><h3>自動上線</h3><p>推上 GitHub<br>幾分鐘就更新</p></div>
+      <div class="arrow"></div>
+      <div class="step"><div class="ic">🔁</div><h3>收回饋</h3><p>老師用了再提<br>下一輪修改</p></div>
+    </div>
+    <div class="g4 grow stg" style="margin-top:28px;align-items:start">
+      <div class="stat"><span class="num"><span data-count="133">133</span><small>款</small></span><span class="lbl">教學工具</span></div>
+      <div class="stat cyan"><span class="num"><span data-count="1255">1,255</span><small>次</small></span><span class="lbl">程式提交紀錄</span></div>
+      <div class="stat amber"><span class="num"><span data-count="22">22</span><small>個月</small></span><span class="lbl">2025.01 開始至今</span></div>
+      <div class="stat"><span class="num"><span data-count="7">7</span><small>大類</small></span><span class="lbl">依教學情境分類</span></div>
+    </div>
+  </div>
+  <aside class="notes">（3:00–4:30）開發方式：我負責想清楚需求、審核 AI 寫出來的程式、做決策；寫程式交給 AI Agent。每次修改都會自動測試、自動上線。2025 年 1 月第一天上線時只有 6 款工具，到今天是 133 款，累計 1,255 次程式提交。</aside>
+</section>
+
+<!-- 5 七大類別 -->
+<section>
+  <div class="s">
+    <div class="kicker">// 02 <b>HOW</b> ・ CATALOG</div>
+    <h2>從 6 款到 133 款，七大類一站找到</h2>
+    <div class="g-7-5 grow">
+      <div class="bars panel" data-a style="justify-content:center">
+        <div class="b"><span>實用工具</span><span class="track"><span class="fill" style="--w:100%"></span></span><span class="v">44</span></div>
+        <div class="b"><span>趣味遊戲</span><span class="track"><span class="fill" style="--w:59%"></span></span><span class="v">26</span></div>
+        <div class="b"><span>教學資源</span><span class="track"><span class="fill" style="--w:55%"></span></span><span class="v">24</span></div>
+        <div class="b"><span>即時互動</span><span class="track"><span class="fill" style="--w:34%"></span></span><span class="v">15</span></div>
+        <div class="b"><span>語言學習</span><span class="track"><span class="fill" style="--w:32%"></span></span><span class="v">14</span></div>
+        <div class="b"><span>親師溝通</span><span class="track"><span class="fill" style="--w:16%"></span></span><span class="v">7</span></div>
+        <div class="b"><span>閱讀理解</span><span class="track"><span class="fill" style="--w:7%"></span></span><span class="v">3</span></div>
+      </div>
+      <div class="shot" data-a="right">
+        <div class="bar"><i></i><i></i><i></i><span>cagoooo.github.io/Akai</span></div>
+        <img src="images/shot-home.jpg" alt="科技教育創新專區首頁截圖" />
+      </div>
+    </div>
+  </div>
+  <aside class="notes">（4:30–5:00）133 款分成七大類，實用工具最多。所有工具集中在一個入口網，老師不用記一堆網址。</aside>
+</section>
+
+<!-- 6 現場示範 -->
+<section>
+  <div class="s">
+    <div class="kicker">// 03 <b>LIVE DEMO</b></div>
+    <h2>現場示範</h2>
+    <div class="g-5-7 grow">
+      <div class="demo-steps stg">
+        <a class="ds" href="https://cagoooo.github.io/Akai/" target="_blank" rel="noopener"><span class="n">1</span><span><h3>入口網首頁</h3><p>依老師或學生身分推薦工具</p></span><span class="go">OPEN ↗</span></a>
+        <a class="ds" href="https://cagoooo.github.io/Akai/tool/100" target="_blank" rel="noopener"><span class="n">2</span><span><h3>工具索引神器</h3><p>輸入「下週要上水的三態」</p></span><span class="go">OPEN ↗</span></a>
+        <a class="ds" href="https://cagoooo.github.io/class/" target="_blank" rel="noopener"><span class="n">3</span><span><h3>班級小管家</h3><p>加扣分、抽籤、聯絡簿一次搞定</p></span><span class="go">OPEN ↗</span></a>
+        <a class="ds" href="https://cagoooo.github.io/schedule/" target="_blank" rel="noopener"><span class="n">4</span><span><h3>場地與平板車預約</h3><p>熱力圖統計、AI 撰寫學期報告</p></span><span class="go">OPEN ↗</span></a>
+        <button class="btn-backup" type="button" data-backup>⏯ 網路不穩時：播放示範錄影</button>
+      </div>
+      <div class="shot" data-a="right">
+        <div class="bar"><i></i><i></i><i></i><span>cagoooo.github.io/Akai/tool/100</span></div>
+        <img src="images/shot-finder.jpg" alt="工具索引神器截圖" />
+      </div>
+    </div>
+  </div>
+  <aside class="notes">（5:00–9:00）依序點開四個連結，每個約 1 分鐘。工具索引神器輸入「我下週要上水的三態」示範推薦。看完回到簡報分頁繼續。若網路不通，按左下「播放示範錄影」，按 Esc 關閉。</aside>
+</section>
+
+<!-- 7 使用數據 -->
+<section>
+  <div class="s">
+    <div class="kicker">// 04 <b>USAGE</b></div>
+    <h2>老師真的在用</h2>
+    <div class="g-5-7 grow">
+      <div class="stg" style="display:flex;flex-direction:column;gap:26px;justify-content:center">
+        <div class="stat"><span class="num"><span data-count="7861">7,861</span><small>次</small></span><span class="lbl">入口網累計造訪</span></div>
+        <div class="stat cyan"><span class="num"><span data-count="11917">11,917</span><small>次</small></span><span class="lbl">從入口網點開工具</span></div>
+      </div>
+      <div class="panel" data-a="right">
+        <span class="tag">2026 每月造訪次數</span>
+        <div class="cols">
+          <div class="c partial"><b>243</b><i style="--h:20%"></i></div>
+          <div class="c"><b>414</b><i style="--h:35%"></i></div>
+          <div class="c"><b>145</b><i style="--h:12%"></i></div>
+          <div class="c"><b>311</b><i style="--h:26%"></i></div>
+          <div class="c"><b>1,199</b><i style="--h:100%"></i></div>
+          <div class="c"><b>1,146</b><i style="--h:96%"></i></div>
+          <div class="c"><b>1,141</b><i style="--h:95%"></i></div>
+          <div class="c"><b>705</b><i style="--h:59%"></i></div>
+          <div class="c"><b>996</b><i style="--h:83%"></i></div>
+          <div class="c partial"><b>567</b><i style="--h:47%"></i></div>
+        </div>
+        <div class="cols-x"><span>1月</span><span>2月</span><span>3月</span><span>4月</span><span>5月</span><span>6月</span><span>7月</span><span>8月</span><span>9月</span><span>10月</span></div>
+        <p class="tiny muted" style="margin:10px 0 0">斜線＝不滿一個月（1/15 起記錄，10 月統計至 10/30）。資料來源：網站即時統計，2026.10.30 擷取。</p>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">（9:00–10:30）這是網站計數器的真實數據：累計造訪 7,861 次，從入口網點開工具 11,917 次。5 月開始明顯成長，這是工具數突破 100 款、開始在校內和研習推廣的時候。注意：點開次數只算從入口網進去的，直接用書籤開的不算，所以實際使用量比這個多。</aside>
+</section>
+
+<!-- 8 最常用的三款 -->
+<section>
+  <div class="s">
+    <div class="kicker">// 04 <b>USAGE</b> ・ TOP 3</div>
+    <h2>點開次數最多的三款</h2>
+    <div class="g3 grow stg">
+      <div class="panel pass">
+        <span class="tag">#10 ・ 實用工具</span>
+        <div class="stat"><span class="num"><span data-count="3756">3,756</span><small>次</small></span></div>
+        <h3>班級小管家</h3>
+        <p class="small muted">學生名單、加扣分、抽籤分組、計時器、聯絡簿、作業檢查、監考，八大功能；多班級資料自動分開。</p>
+      </div>
+      <div class="panel">
+        <span class="tag">#81 ・ 教學資源</span>
+        <div class="stat cyan"><span class="num"><span data-count="2175">2,175</span><small>次</small></span></div>
+        <h3>資訊科技教學駕駛艙</h3>
+        <p class="small muted">三、五、六年級整學期的互動教學艙：從電腦入門、Scratch、micro:bit 到 AI 創作與媒體識讀。</p>
+      </div>
+      <div class="panel amber">
+        <span class="tag">#46 ・ 實用工具</span>
+        <div class="stat amber"><span class="num"><span data-count="1222">1,222</span><small>次</small></span></div>
+        <h3>場地與平板車預約</h3>
+        <p class="small muted">禮堂、專科教室、平板車線上預約；熱力圖看使用情形，AI 自動撰寫學期使用報告。</p>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">（10:30–12:00）這三款加起來約占所有點開次數的六成，剛好代表三種需求：班級經營、教學、行政。可以各舉一個校內老師實際使用的例子。</aside>
+</section>
+
+<!-- 9 上架時間軸 -->
+<section>
+  <div class="s">
+    <div class="kicker">// 05 <b>PUBLIC CODE</b> ・ TIMELINE</div>
+    <h2>三週走完上架流程</h2>
+    <div class="tl grow" data-a="fade">
+      <span class="line-fill"></span>
+      <div class="ev"><div class="d">10/06</div><h3>收到上架說明</h3><p>平臺寄來提交表與上架 SOP</p></div>
+      <div class="ev"><div class="d">10/07</div><h3>完成送件</h3><p>自行檢測：Semgrep、npm audit、機密掃描、防毒，皆 0 項</p></div>
+      <div class="ev"><div class="d">10/08</div><h3>Fortify 初掃</h3><p>237 筆，其中中風險以上 40 筆</p></div>
+      <div class="ev"><div class="d">10/13–15</div><h3>四次複掃</h3><p>逐筆修補，中風險以上降到 0</p></div>
+      <div class="ev"><div class="d">10/22</div><h3>Mend 元件掃描</h3><p>檢查第三方套件弱點與授權</p></div>
+      <div class="ev"><div class="d">10/28</div><h3>複掃合格・送審</h3><p>Fortify、Mend 中風險以上皆 0</p></div>
+    </div>
+    <p class="small" data-a>→ 平臺標準：<span class="em">不得有中風險（含）以上弱點</span>。每次收到報告，原則上當天修完、當天回覆。</p>
+  </div>
+  <aside class="notes">（12:00–13:30）從收到說明到送審大約三週。Fortify 是平臺廠商用的商用掃描工具，初掃 237 筆，其中嚴重 10、高 27、中 3。我們逐筆查、逐筆改，10/15 第四次複掃中風險以上歸零。之後又做了第三方元件掃描（Mend），10/28 兩邊都合格，進入審核。</aside>
+</section>
+
+<!-- 10 掃描結果 -->
+<section>
+  <div class="s">
+    <div class="kicker">// 05 <b>PUBLIC CODE</b> ・ SCAN</div>
+    <h2>每一次掃描的結果</h2>
+    <div class="g-7-5 grow">
+      <div class="panel" data-a="left">
+        <table class="scan">
+          <tr><th>日期</th><th>掃描</th><th style="text-align:right">總筆數</th><th style="text-align:right">中風險以上</th></tr>
+          <tr><td class="mono">10/08</td><td>Fortify 初掃</td><td class="n">237</td><td class="n" style="color:var(--danger)">40</td></tr>
+          <tr><td class="mono">10/13</td><td>第 1 次複掃</td><td class="n">218</td><td class="n" style="color:var(--danger)">34</td></tr>
+          <tr><td class="mono">10/14</td><td>第 2 次複掃</td><td class="n">196</td><td class="n amber">6</td></tr>
+          <tr><td class="mono">10/15</td><td>第 3 次複掃</td><td class="n">193</td><td class="n amber">1</td></tr>
+          <tr><td class="mono">10/15</td><td>第 4 次複掃</td><td class="n">192</td><td class="n ok">0</td></tr>
+          <tr class="final"><td class="mono">10/28</td><td>第 5 次複掃</td><td class="n">189</td><td class="n ok">0</td></tr>
+        </table>
+        <p class="tiny muted" style="margin:10px 0 0">剩下 189 筆皆為低風險，多數是建置腳本讀檔、開發用伺服器記錄等，不在正式網站執行。</p>
+      </div>
+      <div class="stg" style="display:flex;flex-direction:column;gap:20px">
+        <div class="panel pass">
+          <span class="tag">FORTIFY 中風險以上</span>
+          <div class="stat"><span class="num"><span data-count="0" data-from="40">0</span><small>/ 初掃 40</small></span></div>
+        </div>
+        <div class="panel pass">
+          <span class="tag">MEND 套件弱點</span>
+          <div class="stat"><span class="num"><span data-count="1" data-from="15">1</span><small>/ 原 15</small></span><span class="lbl">剩 1 筆低風險（10/27 新公布）</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">（13:30–15:00）表格是五次 Fortify 的變化。Mend 的 15 筆弱點，升級套件、移除沒在用的元件後剩 1 筆，是 10/27 才剛公布的低風險漏洞，有修補版本可以隨時升級。</aside>
+</section>
+
+<!-- 11 修了什麼 -->
+<section>
+  <div class="s">
+    <div class="kicker">// 05 <b>PUBLIC CODE</b> ・ FIXES</div>
+    <h2>修了什麼：從掃描學到的事</h2>
+    <div class="grow stg" style="display:flex;flex-direction:column;justify-content:center">
+      <div class="fix"><span class="before">開發用伺服器走一般 HTTP</span><span class="ar">→</span><span class="after">改為只走加密的 HTTPS（TLS 1.2）</span></div>
+      <div class="fix"><span class="before">檔案路徑未檢查就讀寫</span><span class="ar">→</span><span class="after">先正規化、限定資料夾再存取</span></div>
+      <div class="fix"><span class="before">用一般亂數產生識別碼</span><span class="ar">→</span><span class="after">改用加密等級的安全亂數</span></div>
+      <div class="fix"><span class="before">第三方套件有已知弱點</span><span class="ar">→</span><span class="after">升級到修補版本</span></div>
+      <div class="fix"><span class="before">沒在用、沒標授權的元件</span><span class="ar">→</span><span class="after">直接移除，改用自己寫的程式</span></div>
+      <div class="fix"><span class="before">說明文字被誤判成密碼</span><span class="ar">→</span><span class="after">改寫措辭，金鑰值一律放雲端金鑰庫</span></div>
+    </div>
+    <p class="small" data-a>→ 心得：<span class="em">資安不是額外的工作，是讓其他學校敢拿去用的前提。</span></p>
+  </div>
+  <aside class="notes">（15:00–16:00）挑兩三個例子講就好。重點是：這些修改大多是「養成好習慣」，例如不再用一般亂數、路徑要檢查。修完之後，以後新寫的程式也會照這個標準。</aside>
+</section>
+
+<!-- 12 開源 -->
+<section>
+  <div class="s">
+    <div class="kicker">// 06 <b>OPEN SOURCE</b></div>
+    <h2>一個儲存庫，其他學校也能用</h2>
+    <div class="g2 grow">
+      <div class="panel" data-a="left">
+        <span class="tag">github.com/cagoooo/Akai ・ MIT</span>
+<pre class="tree"><span class="k">Akai/</span>
+├─ client/            <span class="c"># 前端網站</span>
+├─ functions/         <span class="c"># 後端雲端函式</span>
+├─ firestore.rules    <span class="c"># 資料庫安全規則</span>
+├─ .github/workflows/ <span class="c"># 自動測試與部署</span>
+├─ docs/security/     <span class="c"># 檢測與修補紀錄</span>
+└─ LICENSE            <span class="c"># MIT 授權</span></pre>
+      </div>
+      <div class="stg" style="display:flex;flex-direction:column;gap:14px">
+        <div class="panel"><h3>① 複製一份程式</h3><p class="small muted">在 GitHub 上一鍵 Fork</p></div>
+        <div class="panel"><h3>② 換成自己學校的設定</h3><p class="small muted">建立自己的 Firebase 專案、改校名與工具清單</p></div>
+        <div class="panel pass"><h3>③ 推上去就自動上線</h3><p class="small muted">GitHub Pages 免費代管，不用架伺服器</p></div>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">（16:00–17:30）程式全部開源、MIT 授權。前端、後端、資料庫安全規則、自動部署設定和這次的資安修補紀錄，都在同一個儲存庫。其他學校可以複製一份，換成自己的設定就能用。目前還沒有他校沿用的案例，上架後希望能有。</aside>
+</section>
+
+<!-- 13 建議 -->
+<section>
+  <div class="s">
+    <div class="kicker">// 06 <b>FEEDBACK</b></div>
+    <h2>給公共程式平臺的三點建議</h2>
+    <div class="g3 grow stg">
+      <div class="panel">
+        <span class="tag">01 ・ 降低門檻</span>
+        <h3>學校版上架指引</h3>
+        <p class="small muted">學校多半沒有資安廠商和預算。若有給學校的檢測流程、報告範本與常見問答，會有更多老師的作品願意上架。</p>
+      </div>
+      <div class="panel amber">
+        <span class="tag">02 ・ 節省時間</span>
+        <h3>常見誤判說明</h3>
+        <p class="small muted">「近似比對」把常見檔案判成別人的專案、說明文字被當成密碼，查證很花時間。若有誤判判讀說明，雙方都省事。</p>
+      </div>
+      <div class="panel pass">
+        <span class="tag">03 ・ 擴大效益</span>
+        <h3>教育類交流與再利用</h3>
+        <p class="small muted">讓教育類公共程式容易被其他學校找到、沿用，真正做到「一校開發，各校受惠」。</p>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">（17:30–19:00）【草稿，請阿凱老師依實際想法調整措辭】這三點都來自這次走完流程的親身經驗。語氣以「建議、分享」為主。</aside>
+</section>
+
+<!-- 14 結語 -->
+<section>
+  <div class="s center">
+    <div class="kicker">// END</div>
+    <h2>一位老師開始，讓更多學校受惠</h2>
+    <div class="qrs stg" style="margin-top:20px">
+      <div class="qrbox"><div class="qr" data-url="https://cagoooo.github.io/Akai/"></div><h3>科技教育創新專區</h3><div class="u">cagoooo.github.io/Akai</div></div>
+      <div class="qrbox"><div class="qr" data-url="https://github.com/cagoooo/Akai"></div><h3>原始碼（MIT）</h3><div class="u">github.com/cagoooo/Akai</div></div>
+      <div class="qrbox"><div class="qr" data-url="https://cagoooo.github.io/moda-akai-briefing/"></div><h3>本簡報</h3><div class="u">cagoooo.github.io/moda-akai-briefing</div></div>
+    </div>
+    <p class="small muted" data-a style="text-align:center;margin-top:26px">桃園市龍潭區石門國民小學 教務處資訊組｜黃凱揚 資訊組長｜謝謝聆聽，敬請指教</p>
+  </div>
+  <aside class="notes">（19:00–20:00）收尾：歡迎長官用手機掃碼直接打開網站。謝謝，請長官指教。</aside>
+</section>
+
+</div>
+</div>
+
+<!-- 示範備援影片 -->
+<div class="backup" id="backup">
+  <video src="media/demo-backup.mp4" controls playsinline preload="none"></video>
+  <button type="button">關閉（Esc）</button>
+</div>
+
+<!-- 阿凱老師署名（不可省） -->
+<footer class="akai-footer">
+  Made with ❤️ by
+  <a href="https://www.smes.tyc.edu.tw/modules/school/index.php?department_id=2&zone_id=0&page_id=2&content_id=11&type=news&from_op=all_news#a5" target="_blank" rel="noopener">阿凱老師</a>
+  · 桃園市龍潭區石門國民小學
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/notes/notes.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.js"></script>
+<script>
+  Reveal.initialize({
+    hash: true,
+    width: 1280,
+    height: 720,
+    margin: 0.03,
+    center: false,
+    transition: 'fade',
+    transitionSpeed: 'fast',
+    backgroundTransition: 'none',
+    progress: true,
+    controls: true,
+    slideNumber: 'c/t',
+    plugins: [RevealNotes],
+  });
+</script>
+<script src="js/motion.js?v=__BUILD_VERSION__"></script>
+<script src="js/opening.js?v=__BUILD_VERSION__"></script>
+<script type="module" src="js/deck.js?v=__BUILD_VERSION__"></script>
+</body>
+</html>
