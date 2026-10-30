@@ -238,7 +238,7 @@ html.print-pdf .reveal .slides section .fragment { opacity: 1 !important; visibi
 .sugg { gap: 14px 20px; }
 .sugg .panel { padding: 14px 22px; }
 .sugg .panel h3 { font-size: 27px; margin-bottom: 4px; }
-.sugg .panel p { font-size: 23px; margin: 0; line-height: 1.45; }
+.sugg .panel p { font-size: 21px; margin: 0; line-height: 1.45; }
 .sugg .panel .tag { margin-bottom: 4px; }
 
 /* 開源結構樹 */
