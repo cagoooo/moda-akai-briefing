@@ -75,7 +75,7 @@
       <div class="it"><span class="n">02</span><span class="t">怎麼做到<span>老師提需求，AI 協作寫程式，自動上線</span></span><span class="m">3 min</span></div>
       <div class="it"><span class="n">03</span><span class="t">現場示範<span>入口網、工具索引神器、主推工具</span></span><span class="m">4 min</span></div>
       <div class="it"><span class="n">04</span><span class="t">校園使用情形<span>真實數據與帶課情境</span></span><span class="m">3 min</span></div>
-      <div class="it"><span class="n">05</span><span class="t">上架之路與資安檢測<span>Fortify 五次掃描、Mend 元件掃描</span></span><span class="m">5 min</span></div>
+      <div class="it"><span class="n">05</span><span class="t">上架之路與資安檢測<span>Fortify 六次掃描、Mend 元件掃描</span></span><span class="m">5 min</span></div>
       <div class="it"><span class="n">06</span><span class="t">開源與建議<span>其他學校可以怎麼用、給平臺的回饋</span></span><span class="m">3 min</span></div>
     </div>
   </div>
@@ -294,7 +294,7 @@
       </div>
     </div>
   </div>
-  <aside class="notes">（13:30–15:00）表格是五次 Fortify 的變化。Mend 的 15 筆弱點，升級套件、移除沒在用的元件後剩 1 筆，是 10/27 才剛公布的低風險漏洞，有修補版本可以隨時升級。</aside>
+  <aside class="notes">（13:30–15:00）表格是 6 次 Fortify（初掃＋5 次複掃）的變化。Mend 的 15 筆弱點，升級套件、移除沒在用的元件後剩 1 筆，是 10/27 才剛公布的低風險漏洞，有修補版本可以隨時升級。</aside>
 </section>
 
 <!-- 11 修了什麼 -->
@@ -345,26 +345,34 @@
 <section>
   <div class="s">
     <div class="kicker">// 06 <b>FEEDBACK</b></div>
-    <h2>給公共程式平臺的三點建議</h2>
-    <div class="g3 grow stg">
+    <h2>感謝與建議</h2>
+    <div class="panel pass thanks" data-a>
+      <span class="em">感謝數位發展部與公共程式平臺團隊</span>：三週內協助完成 6 次 Fortify、2 次 Mend 掃描，每份報告都逐項列出，讓一所小學也能把資安做到位。
+    </div>
+    <div class="g2 grow stg sugg">
+      <div class="panel pass">
+        <span class="tag">01 ・ 最關鍵的幫助</span>
+        <h3>平臺協助檢測</h3>
+        <p class="muted">Fortify、Mend 這類商用工具，學校自己很難負擔。建議把「平臺協助檢測」做成學校送件的固定服務。</p>
+      </div>
       <div class="panel">
-        <span class="tag">01 ・ 降低門檻</span>
+        <span class="tag">02 ・ 降低門檻</span>
         <h3>學校版上架指引</h3>
-        <p class="small muted">學校多半沒有資安廠商和預算。若有給學校的檢測流程、報告範本與常見問答，會有更多老師的作品願意上架。</p>
+        <p class="muted">學校多半沒有資安人力。若有給學校的檢測流程、報告範本與常見問答，會有更多老師的作品願意上架。</p>
       </div>
       <div class="panel amber">
-        <span class="tag">02 ・ 節省時間</span>
+        <span class="tag">03 ・ 節省時間</span>
         <h3>常見誤判說明</h3>
-        <p class="small muted">「近似比對」把常見檔案判成別人的專案、說明文字被當成密碼，查證很花時間。若有誤判判讀說明，雙方都省事。</p>
+        <p class="muted">「近似比對」把常見檔案判成別人的專案、說明文字被當成密碼，查證很花時間。有判讀說明，雙方都省事。</p>
       </div>
-      <div class="panel pass">
-        <span class="tag">03 ・ 擴大效益</span>
+      <div class="panel">
+        <span class="tag">04 ・ 擴大效益</span>
         <h3>教育類交流與再利用</h3>
-        <p class="small muted">讓教育類公共程式容易被其他學校找到、沿用，真正做到「一校開發，各校受惠」。</p>
+        <p class="muted">讓教育類公共程式容易被其他學校找到、沿用，真正做到「一校開發，各校受惠」。</p>
       </div>
     </div>
   </div>
-  <aside class="notes">（17:30–19:00）【草稿，請阿凱老師依實際想法調整措辭】這三點都來自這次走完流程的親身經驗。語氣以「建議、分享」為主。</aside>
+  <aside class="notes">（17:30–19:00）先真心感謝：這三週平臺團隊每次掃描都很快回報，6 次 Fortify（初掃＋5 次複掃）、2 次 Mend。接著四點建議都來自親身經驗，第一點最關鍵：這次如果沒有平臺幫忙掃描，學校自己做不到。語氣以「分享經驗」為主。</aside>
 </section>
 
 <!-- 14 結語 -->

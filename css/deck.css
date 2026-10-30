@@ -233,6 +233,14 @@ html.print-pdf .reveal .slides section .fragment { opacity: 1 !important; visibi
 .fix .after::before { content: '✓ '; color: var(--pass-ink); font-weight: 700; }
 .fix .ar { text-align: center; color: var(--cyan); font-size: 28px; }
 
+/* 感謝與建議 */
+.thanks { font-size: 24px; padding: 14px 22px; margin-bottom: 16px; }
+.sugg { gap: 14px 20px; }
+.sugg .panel { padding: 14px 22px; }
+.sugg .panel h3 { font-size: 27px; margin-bottom: 4px; }
+.sugg .panel p { font-size: 23px; margin: 0; line-height: 1.45; }
+.sugg .panel .tag { margin-bottom: 4px; }
+
 /* 開源結構樹 */
 .tree { font: 22px/1.75 'JetBrains Mono', monospace; color: var(--ink); white-space: pre; margin: 0; }
 .tree .c { color: var(--muted); }
