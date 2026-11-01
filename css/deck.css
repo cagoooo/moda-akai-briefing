@@ -2,6 +2,7 @@
  * 與中正工作坊（米白紙＋橘色玻璃卡）刻意區隔：格線底、細線框、角標、等寬數字、綠色「通過」訊號 */
 :root,
 [data-theme="dark"] {
+  color-scheme: dark;
   --bg: #0a1d33;
   --bg2: #0e2744;
   --grid: rgba(110, 170, 240, .09);
@@ -32,10 +33,16 @@
   --line-soft: rgba(20, 110, 190, .18);
   --pass: #11935f;
   --pass-ink: #0b7a4e;
-  --amber: #b77900;
+  --amber: #8a5a00;
   --cyan: #0b6fb3;
   --danger: #c62828;
-  --shadow: 0 0 0 1px rgba(20, 80, 150, .06), 0 14px 30px rgba(20, 50, 90, .08);
+  --shadow: 0 0 0 1px rgba(20, 80, 150, .08), 0 8px 22px rgba(20, 50, 90, .14);
+}
+/* 白底：面板改為不透明白色＋較深的框線，才不會被格線底透出來、和背景糊在一起；琥珀色加深到文字可讀 */
+[data-theme="light"] {
+  color-scheme: light;
+  --panel: #ffffff;
+  --line: #7f9fc6;
 }
 
 html, body { background: var(--bg); color: var(--ink); }
@@ -48,6 +55,18 @@ html, body { background: var(--bg); color: var(--ink); }
     linear-gradient(90deg, var(--grid) 1px, transparent 1px);
   background-size: 160px 160px, 160px 160px, 32px 32px, 32px 32px;
   background-position: -1px -1px;
+}
+/* 手機（上下捲動檢視）：Reveal 會把每一頁的背景以「當下算出的顏色」寫死在 .scroll-page 的 inline style，
+ * 切換深淺底色後這些頁面背景不會跟著變（白底模式下仍是深藍底，文字區塊顏色就對不上），所以用 !important 讓它跟著主題變數走。 */
+.reveal-scroll .scroll-page {
+  background-color: var(--bg) !important;
+  background-image:
+    linear-gradient(var(--grid-major) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-major) 1px, transparent 1px),
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px) !important;
+  background-size: 160px 160px, 160px 160px, 32px 32px, 32px 32px !important;
+  background-position: -1px -1px !important;
 }
 .reveal {
   font-family: 'Noto Sans TC', 'Microsoft JhengHei', sans-serif;
@@ -116,6 +135,10 @@ html.print-pdf .reveal .slides section .fragment { opacity: 1 !important; visibi
 .panel.pass { border-color: color-mix(in srgb, var(--pass) 60%, var(--line)); }
 .panel.pass::before, .panel.pass::after { border-color: var(--pass); }
 .panel.amber::before, .panel.amber::after { border-color: var(--amber); }
+/* 琥珀面板：只有框線、標籤與項目符號用琥珀色，內文維持一般文字色（白底時整塊內文變琥珀色又淡又難讀） */
+[data-theme="light"] .panel.amber { color: var(--ink); border-color: color-mix(in srgb, var(--amber) 55%, var(--line)); }
+.panel.amber li::marker { color: var(--amber); }
+.panel.amber .tag { border-color: var(--amber); color: var(--amber); }
 .panel h3 { font-size: 29px; }
 .panel p, .panel li { font-size: 25px; }
 .panel .tag {
@@ -314,6 +337,7 @@ html.print-pdf .reveal .slides section .fragment { opacity: 1 !important; visibi
   position: absolute; left: 16.5%; top: 86.5%; font: 700 21px 'Noto Sans TC', sans-serif; color: #0a1d33;
   background: var(--pass); padding: 6px 12px; white-space: nowrap;
 }
+[data-theme="light"] .shot-img .callout { background: var(--pass-ink); color: #fff; }
 @keyframes ring-pulse { 0%, 100% { box-shadow: 0 0 0 3px color-mix(in srgb, var(--pass) 30%, transparent); } 50% { box-shadow: 0 0 0 9px color-mix(in srgb, var(--pass) 8%, transparent); } }
 .pstep { display: flex; flex-direction: column; gap: 10px; }
 .pstep .ps { display: grid; grid-template-columns: 46px 1fr; gap: 12px; align-items: center; border: 1px solid var(--line); background: var(--panel); padding: 10px 16px; }

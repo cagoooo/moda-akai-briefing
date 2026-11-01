@@ -8,6 +8,7 @@ const store = {
 /* ---------- 主題（預設深藍藍圖；投影太亮看不清時可切白底） ---------- */
 function applyTheme(t) {
   document.documentElement.dataset.theme = t;
+  document.querySelector('meta[name="theme-color"]')?.setAttribute('content', t === 'dark' ? '#0a1d33' : '#f6f9fd');
   const btn = document.getElementById('theme-btn');
   if (btn) btn.textContent = t === 'dark' ? '☀️ 白底' : '🌙 深底';
 }
