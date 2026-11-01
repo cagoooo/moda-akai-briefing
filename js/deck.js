@@ -50,6 +50,32 @@ document.querySelectorAll('.qr[data-url]').forEach((box) => {
   sync();
 })();
 
+/* ---------- 新版偵測 ----------
+ * GitHub Pages 會讓瀏覽器把 index.html 留存約 10 分鐘，剛部署完用手機開，可能還拿到舊版頁面（沒有 Service Worker 可以更新）。
+ * 載入時用不留快取的方式讀 version.json，和目前頁面引用的版本號比對，不同就換成帶版本號的網址重新載入（每個版本只會重載一次，避免無限重載）。 */
+(function versionCheck() {
+  const RELOAD_KEY = 'moda2026akai_reloaded_to';
+  const current = (document.querySelector('link[href*="deck.css"]')?.getAttribute('href') || '').match(/[?&]v=([^&]+)/)?.[1];
+  if (!current || current.startsWith('__')) return; // 本機開發沒有版本號，略過
+  const check = async () => {
+    try {
+      const res = await fetch(`version.json?t=${Date.now()}`, { cache: 'no-store' });
+      if (!res.ok) return;
+      const { version } = await res.json();
+      if (!version || version === current) return;
+      let tried = null;
+      try { tried = sessionStorage.getItem(RELOAD_KEY); } catch { /* 忽略 */ }
+      if (tried === version) return;
+      try { sessionStorage.setItem(RELOAD_KEY, version); } catch { /* 忽略 */ }
+      const url = new URL(location.href);
+      url.searchParams.set('v', version);
+      location.replace(url.toString());
+    } catch { /* 離線或讀取失敗時維持現狀 */ }
+  };
+  check();
+  document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') check(); });
+})();
+
 /* ---------- 示範備援影片：現場網路不穩時改播錄好的示範 ---------- */
 const backup = document.getElementById('backup');
 const backupVideo = backup?.querySelector('video');
