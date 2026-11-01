@@ -26,6 +26,29 @@ document.querySelectorAll('.qr[data-url]').forEach((box) => {
   box.innerHTML = qr.createSvgTag({ cellSize: 4, margin: 1, scalable: true });
 });
 
+/* ---------- 手機上下滑動提示 ----------
+ * Reveal 在寬度 435px 以下會自動改成上下捲動；手機使用者容易照習慣左右滑，所以先放一個往下的箭頭提示。
+ * 只認「手指真的滑了」（touchmove／滾輪／按鍵），片頭播完自動換頁的程式捲動不算，滑過一次就不再出現。 */
+(function swipeHint() {
+  const HINT_KEY = 'moda2026akai_swipehint_done';
+  const root = document.documentElement;
+  const sess = {
+    get() { try { return sessionStorage.getItem(HINT_KEY); } catch { return null; } },
+    set() { try { sessionStorage.setItem(HINT_KEY, '1'); } catch { /* 忽略 */ } },
+  };
+  let done = sess.get() === '1';
+  const sync = () => root.classList.toggle('swipe-hint-on', !done && window.innerWidth <= 435);
+  const finish = () => {
+    if (done) return;
+    done = true;
+    sess.set();
+    sync();
+  };
+  ['touchmove', 'wheel', 'keydown'].forEach((ev) => window.addEventListener(ev, finish, { passive: true }));
+  window.addEventListener('resize', sync);
+  sync();
+})();
+
 /* ---------- 示範備援影片：現場網路不穩時改播錄好的示範 ---------- */
 const backup = document.getElementById('backup');
 const backupVideo = backup?.querySelector('video');

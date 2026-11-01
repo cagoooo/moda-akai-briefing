@@ -321,6 +321,30 @@ html.print-pdf .reveal .slides section .fragment { opacity: 1 !important; visibi
 .pstep .ps h3 { font-size: 24px; margin: 0; }
 .pstep .ps p { font-size: 19px; color: var(--muted); margin: 2px 0 0; line-height: 1.4; }
 
+/* 手機上下滑動提示：只在手機的捲動檢視顯示，第一次滑動後自動隱藏 */
+.swipe-hint {
+  position: fixed; left: 50%; bottom: 46px; z-index: 25; transform: translateX(-50%);
+  display: none; flex-direction: column; align-items: center; gap: 2px; pointer-events: none;
+  font: 700 17px 'Noto Sans TC', sans-serif; color: var(--ink);
+  background: color-mix(in srgb, var(--panel-solid) 92%, transparent); border: 1px solid var(--pass);
+  padding: 8px 18px 6px; box-shadow: 0 0 0 4px color-mix(in srgb, var(--pass) 18%, transparent);
+  animation: swipe-pulse 2.2s ease-in-out infinite;
+}
+html.swipe-hint-on .swipe-hint { display: flex; }
+.swipe-hint .sh-arrows { display: flex; flex-direction: column; align-items: center; line-height: 0; height: 26px; }
+.swipe-hint .sh-arrows i {
+  display: block; width: 13px; height: 13px; border-right: 3px solid var(--pass); border-bottom: 3px solid var(--pass);
+  transform: rotate(45deg); margin-top: -4px; opacity: 0; animation: swipe-chev 1.4s ease-in-out infinite;
+}
+.swipe-hint .sh-arrows i:nth-child(2) { animation-delay: .25s; }
+@keyframes swipe-chev { 0% { opacity: 0; transform: translateY(-5px) rotate(45deg); } 45% { opacity: 1; } 100% { opacity: 0; transform: translateY(7px) rotate(45deg); } }
+@keyframes swipe-pulse { 0%, 100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(-5px); } }
+html.is-opening .swipe-hint { opacity: 0; }
+@media (prefers-reduced-motion: reduce) {
+  .swipe-hint, .swipe-hint .sh-arrows i { animation: none; }
+  .swipe-hint .sh-arrows i { opacity: 1; }
+}
+
 /* 開場影片頁 */
 .vid-slide .op-wrap { position: relative; width: 1280px; height: 720px; background: #000; }
 .vid-slide .op-video { width: 100%; height: 100%; object-fit: cover; display: block; }
