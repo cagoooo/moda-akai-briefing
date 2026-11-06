@@ -276,6 +276,10 @@ html.print-pdf .reveal .slides section .fragment { opacity: 1 !important; visibi
 .qrbox .qr svg { width: 100%; height: 100%; display: block; }
 .qrbox h3 { font-size: 26px; }
 .qrbox .u { font: 17px 'JetBrains Mono', monospace; color: var(--muted); }
+.reveal a.qrbox { display: block; color: inherit; text-decoration: none; padding: 12px 14px 10px; border-radius: 10px; border: 1px solid transparent; transition: border-color .2s, background .2s, transform .2s; cursor: pointer; }
+.reveal a.qrbox:hover, .reveal a.qrbox:focus-visible { border-color: var(--cyan); background: rgba(94,200,255,.08); transform: translateY(-3px); outline: none; }
+.reveal a.qrbox:hover .u, .reveal a.qrbox:focus-visible .u { color: var(--cyan); text-decoration: underline; }
+.reveal a.qrbox .go { display: inline-block; margin-top: 6px; font-size: 15px; color: var(--cyan); }
 
 /* 主題切換鈕 */
 #theme-btn {
