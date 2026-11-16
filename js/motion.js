@@ -89,9 +89,61 @@
     gsap.to(titles, { autoAlpha: 0, duration: T(0.25), overwrite: true });
   }
 
+  // ---- 手機直拿的上下捲動檢視 ----
+  // 這個模式下一頁在「換頁事件」之前就已經滑進畫面，若等 slidechanged 才把內容藏起來再淡入，會看到內容閃一下。
+  // 改成：頁面還在畫面外時先把內容設成進場前狀態；滑進畫面 30% 就播進場動畫；整頁滑出畫面才重設。
+  // 不做淡出（舊頁正被滑走，淡出只會讓往回滑時看到空白）。
+  function reset(slide) {
+    timelines.get(slide)?.kill();
+    timelines.delete(slide);
+    const { kickers, titles, items } = partsOf(slide);
+    gsap.set(kickers, FROM.up);
+    items.forEach((el) => gsap.set(el, FROM[el.dataset.a] || FROM.up));
+    titles.forEach((t) => { gsap.set(t, { autoAlpha: 1, y: 0 }); gsap.set(charsOf(t), { autoAlpha: 0, yPercent: 65 }); });
+  }
+
+  let observer = null;
+  let scrollMode = false;
+  const shown = new WeakSet();
+  function syncMode() {
+    const now = !!(Reveal.isScrollView && Reveal.isScrollView());
+    if (now === scrollMode && (!now || observer)) return;
+    scrollMode = now;
+    observer?.disconnect();
+    observer = null;
+    if (!now) {
+      const cur = Reveal.getCurrentSlide();
+      if (cur && !shown.has(cur)) enter(cur);
+      return;
+    }
+    observer = new IntersectionObserver((entries) => {
+      entries.forEach((en) => {
+        const slide = en.target.querySelector('section');
+        if (!slide) return;
+        if (en.isIntersecting && en.intersectionRatio >= 0.3) {
+          if (!shown.has(slide)) { shown.add(slide); enter(slide); }
+        } else if (!en.isIntersecting || en.intersectionRatio === 0) {
+          // 剛好貼在畫面邊緣時 isIntersecting 會是 true、比例 0，也要先藏好
+          shown.delete(slide);
+          reset(slide);
+        }
+      });
+    }, { threshold: [0, 0.3] });
+    document.querySelectorAll('.scroll-page').forEach((p) => observer.observe(p));
+  }
+
   function start() {
-    enter(Reveal.getCurrentSlide());
-    Reveal.on('slidechanged', (e) => { leave(e.previousSlide); enter(e.currentSlide); });
+    syncMode();
+    if (!scrollMode) { enter(Reveal.getCurrentSlide()); shown.add(Reveal.getCurrentSlide()); }
+    Reveal.on('resize', () => setTimeout(syncMode, 50));
+    Reveal.on('slidechanged', (e) => {
+      syncMode();
+      if (scrollMode) return; // 捲動檢視由 IntersectionObserver 處理
+      shown.delete(e.previousSlide);
+      leave(e.previousSlide);
+      enter(e.currentSlide);
+      shown.add(e.currentSlide);
+    });
     Reveal.on('fragmentshown', (e) => e.fragments.forEach((f) =>
       gsap.fromTo(f, FROM[f.dataset.a] || FROM.up, { ...TO, duration: T(0.5), ease: EASE, overwrite: true })));
     Reveal.on('fragmenthidden', (e) => e.fragments.forEach((f) =>
